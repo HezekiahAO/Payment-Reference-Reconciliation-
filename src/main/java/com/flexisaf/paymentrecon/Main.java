@@ -67,5 +67,19 @@ public class Main {
         } catch (IOException error) {
             System.out.println("Failed to load invoices: " + error.getMessage());
         }
+
+        GatewayCsvImporter importer = new GatewayCsvImporter();
+        try {
+            List<GatewayTransaction> transactions = importer.importCsv("gateway.csv");
+            System.out.println("Imported gateway transactions:");
+            for (GatewayTransaction t : transactions) {
+                System.out.println(t);
+            }
+            
+        reconciliationService.reconcileGatewayTransactions(invoices, transactions);
+
+        } catch (IOException e) {
+            System.out.println("Failed to import gateway CSV: " + e.getMessage());
+        }
     }
 }
