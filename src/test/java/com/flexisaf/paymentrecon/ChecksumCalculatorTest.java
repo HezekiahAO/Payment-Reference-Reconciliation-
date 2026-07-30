@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChecksumCalculatorTest {
-                                    //.\mvnw.cmd test
+                                    //    .\mvnw.cmd test
     @Test
     void knownBaseNumberProducesExpectedCheckDigit(){
         ChecksumCalculator calculator = new ChecksumCalculator();
