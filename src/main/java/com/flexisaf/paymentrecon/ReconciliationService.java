@@ -11,7 +11,6 @@ public class ReconciliationService {
         for (PaymentRecord payment : payments) {
             Invoice matchedInvoice = null;
 
-
         // finding the invoice whose generated reference equals payment.getReference()
         for (Invoice inv : invoices) {
             String invoiceReference = referenceGenerator.generateReference(inv);
