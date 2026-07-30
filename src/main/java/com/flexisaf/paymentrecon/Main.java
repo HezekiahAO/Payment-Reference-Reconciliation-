@@ -82,6 +82,7 @@ public class Main {
             System.out.println("Failed to import gateway CSV: " + e.getMessage());
         }
 
+        
         PaymentRecordCsvStore paymentStore = new PaymentRecordCsvStore();
         try {
             paymentStore.save(paymentRecords, "payments.csv");
