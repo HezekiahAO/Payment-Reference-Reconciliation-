@@ -1,5 +1,6 @@
 package com.flexisaf.paymentrecon;  // The goal of this file is to serve as an entry point.
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,27 +31,41 @@ public class Main {
             System.out.println(x);
         }
 
-
-
-    ReferenceGeneratorService referenceGenerator = new ReferenceGeneratorService();
+        ReferenceGeneratorService referenceGenerator = new ReferenceGeneratorService();
 
         for (Invoice x : invoices) {
             String reference = referenceGenerator.generateReference(x);
             System.out.println("Generated reference for Invoice " + x.getInvoiceId() + ", Reference: " + reference);
-            }
-
-            List<PaymentRecord> paymentRecords = new ArrayList<>();
-            String firstReference = referenceGenerator.generateReference(invoices.get(0));
-            paymentRecords.add(new PaymentRecord(firstReference, 250.75, "2026-6-04"));
-
-            for (PaymentRecord p : paymentRecords){
-                System.out.println(p);
-            }
-        
-            ReconciliationService reconciliationService = new ReconciliationService();  // instace of ReconcilationService
-            reconciliationService.reconcile(invoices, paymentRecords);
-        
         }
 
-    }
+        List<PaymentRecord> paymentRecords = new ArrayList<>();
+        String firstReference = referenceGenerator.generateReference(invoices.get(0));
+        paymentRecords.add(new PaymentRecord(firstReference, 250.75, "2026-6-04"));
 
+        for (PaymentRecord p : paymentRecords) {
+            System.out.println(p);
+        }
+
+        ReconciliationService reconciliationService = new ReconciliationService();  // instance of reconcilation
+        reconciliationService.reconcile(invoices, paymentRecords);
+
+        InvoiceCsvStore invoiceStore = new InvoiceCsvStore();
+
+        try {
+            invoiceStore.save(invoices, "invoice.csv");
+            System.out.println("Invoices saved to invoice.csv");
+        } catch (IOException error) {
+            System.out.println("Failed to save invoices: " + error.getMessage());
+        }
+
+        try {
+            List<Invoice> loadedInvoices = invoiceStore.load("invoice.csv");
+            System.out.println("Loaded invoices from file:");
+            for (Invoice inv : loadedInvoices) {
+                System.out.println(inv);
+            }
+        } catch (IOException error) {
+            System.out.println("Failed to load invoices: " + error.getMessage());
+        }
+    }
+}
