@@ -1,9 +1,11 @@
+// This (Invoice) represent the money owned by a person or we can say a buyer who wants to pay for a goods he bought.
+
 package com.flexisaf.paymentrecon;
 
 public class Invoice {
 
         private int invoiceId;
-        private int payerId;
+        private int payerId; // creating mutiple fields
         private double amount;
         private String status;
 
