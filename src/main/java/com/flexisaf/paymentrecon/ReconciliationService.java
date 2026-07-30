@@ -1,5 +1,5 @@
 package com.flexisaf.paymentrecon;
-
+// the part that Matches recorded payments (PaymentRecord) and gateway transactions
 import java.util.List;
 
 public class ReconciliationService {
