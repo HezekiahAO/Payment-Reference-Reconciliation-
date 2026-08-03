@@ -32,6 +32,6 @@ Or just use the Run button in VS Code (defaults to the `run` command).
 | `InvoiceCsvStore.java` | Saves/loads Invoice data to/from CSV |
 | `GatewayCsvImporter.java` | Imports gateway CSV, skipping corrupted rows |
 
-This project was an interesting one and has pushed beyond my comfort zone.
+This project was an interesting one and has pushed me beyond my comfort zone.
 
 Note:
