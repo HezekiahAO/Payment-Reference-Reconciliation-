@@ -81,5 +81,21 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Failed to import gateway CSV: " + e.getMessage());
         }
+
+        
+        PaymentRecordCsvStore paymentStore = new PaymentRecordCsvStore();
+        try {
+            paymentStore.save(paymentRecords, "payments.csv");
+            System.out.println("Payments saved to payments.csv");
+
+            List<PaymentRecord> loadedPayments = paymentStore.load("payments.csv");
+            System.out.println("Loaded payments from file:");
+            for (PaymentRecord p : loadedPayments) {
+                System.out.println(p);
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to save/load payments: " + e.getMessage());
+        }
+
     }
 }

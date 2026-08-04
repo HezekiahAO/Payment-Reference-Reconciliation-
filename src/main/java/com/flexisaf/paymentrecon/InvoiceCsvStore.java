@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InvoiceCsvStore {
-                                                                // input output exceptions
+                                                                // input output exceptions (IOExceptions)
     public void save(List<Invoice> invoices, String filePath) throws IOException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Invoice inv : invoices) {
